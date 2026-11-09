@@ -1,0 +1,26 @@
+{
+  "name": "dsh-game-workshop",
+  "version": "0.1.0",
+  "description": "游戏工坊 — original offline card games and opt-in local editor MCP connections for DeepSeek Harness.",
+  "type": "module",
+  "license": "MIT",
+  "author": "a348579184",
+  "repository": { "type": "git", "url": "git+https://github.com/a348579184/dsh-game-workshop.git" },
+  "homepage": "https://github.com/a348579184/dsh-game-workshop#readme",
+  "bugs": "https://github.com/a348579184/dsh-game-workshop/issues",
+  "keywords": ["dsh-plugin", "deepseek-harness", "card-game", "mcp", "unity", "blender"],
+  "engines": { "node": ">=22", "dsh": ">=0.2.2-rc.1 <0.3.0" },
+  "exports": {
+    ".": "./index.js",
+    "./client": "./dist/client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": ["index.js", "host/", "game/", "dist/client.js", "cordis.patch.yml", "editors/", "locale/*.json", "icon.svg", "docs/", "README.md", "LICENSE"],
+  "scripts": { "build": "node scripts/build.mjs", "test": "node --test tests/*.test.mjs", "check": "node --check index.js && node --check dist/client.js" },
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" },
+    "client": { "platform": "web", "immediately": true, "inject": ["@deepseek-ai/dsh-client-ui-layout", "@deepseek-ai/dsh-client-ui-sidebar", "@deepseek-ai/dsh-client-locale"] }
+  },
+  "devDependencies": { "esbuild": "0.28.2", "playwright": "1.65.0" }
+}
